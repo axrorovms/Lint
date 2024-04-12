@@ -45,3 +45,10 @@ class Module:
     def __init__(self, body):
         self.body = body
 
+
+neg_eight = UnaryOp(USub(), Constant(8))
+
+read = Call(Name('input_int'), [])
+
+ast1_1 = BinOp(read, Add(), neg_eight)
+
