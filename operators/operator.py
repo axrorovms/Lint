@@ -7,7 +7,7 @@ class Constant:
         self.value = value
 
 
-class UnaryOperator:
+class UnaryOp:
     __match_args__ = ("op", "value")
 
     def __init__(self, op, value):
@@ -30,7 +30,7 @@ class Name:
         self.id = id
 
 
-class BinaryOp:
+class BinOp:
     __match_args__ = ("first_value", "second_value", "op")
 
     def __init__(self, first_value, op, second_value):
@@ -44,12 +44,4 @@ class Module:
 
     def __init__(self, body):
         self.body = body
-
-
-eight = Constant(8)
-neg_eight = UnaryOperator(USub(), eight)
-
-read = Call(Name('input_int'), [])
-
-ast1_1 = BinaryOp(read, Add(), neg_eight)
 

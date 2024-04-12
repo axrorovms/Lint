@@ -1,6 +1,6 @@
 from _ast import Expr
 
-from operators.operator import (Constant, Call, UnaryOperator, BinaryOp,
+from operators.operator import (Constant, Call, UnaryOp, BinOp,
                                 Add, USub, Sub, Name, Module, read, ast1_1)
 
 
@@ -10,11 +10,11 @@ def is_exp(e):
             return True
         case Call(func=Name(id='input_int'), args=[]):
             return True
-        case UnaryOperator(op=USub(), value=e1):
+        case UnaryOp(op=USub(), value=e1):
             return is_exp(e1)
-        case BinaryOp(first_value=e1, op=Add(), second_value=e2):
+        case BinOp(first_value=e1, op=Add(), second_value=e2):
             return is_exp(e1) and is_exp(e2)
-        case BinaryOp(first_value=e1, op=Sub(), second_value=e2):
+        case BinOp(first_value=e1, op=Sub(), second_value=e2):
             return is_exp(e1) and is_exp(e2)
         case _:
             return False
@@ -39,4 +39,4 @@ def is_Lint(p):
 
 
 print(is_Lint(Module([Expr(ast1_1)])))
-print(is_Lint(Module([Expr(BinaryOp(read, Sub(), UnaryOperator(Add(), Constant(8))))])))
+print(is_Lint(Module([Expr(BinOp(read, Sub(), UnaryOp(Add(), Constant(8))))])))
