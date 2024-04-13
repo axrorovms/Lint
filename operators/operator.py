@@ -31,16 +31,17 @@ class Name:
 
 
 class BinOp:
-    __match_args__ = ("first_value", "second_value", "op")
+    __match_args__ = ("first_value", "op", "second_value")
 
     def __init__(self, first_value, op, second_value):
         self.first_value = first_value
-        self.second_value = second_value
         self.op = op
+        self.second_value = second_value
+
 
 
 class Module:
-    __match_args__ = ("body")
+    __match_args__ = ("body",)
 
     def __init__(self, body):
         self.body = body
